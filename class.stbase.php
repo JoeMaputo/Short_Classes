@@ -5,7 +5,6 @@ class StBase {
 	private static $base='имя_базы_данных';
 	private static $user='имя_пользователя';
 	private static $pass='пароль';
-	
 	private static $msql;
 	
 	public static function fetch_r($r) {
