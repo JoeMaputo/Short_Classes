@@ -1,5 +1,9 @@
 <?php
 
+/*
+* @autor Martynuk Andrew <j-map@mail.ru>
+*/
+
 class StBase {
 	private static $host='localhost';
 	private static $base='имя_базы_данных';
