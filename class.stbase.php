@@ -12,7 +12,7 @@ class StBase {
 		if(is_object($r)){
 			$i = 0;
 			$arr = array();
-			while($r->data_seek($i)){$arr[$i] = $r->fetch_row();	$i++;	}
+			while($r->data_seek($i)){$arr[$i] = $r->fetch_row();	$i++;}
 			mysqli_next_result(self::$msql);
 			return $arr;
 		} else{
