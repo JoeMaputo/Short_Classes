@@ -4,7 +4,8 @@
 * @autor Martynuk Andrew <j-map@mail.ru>
 */
 
-class StBase {
+class StBase 
+{
 	private static $host='localhost';
 	private static $base='имя_базы_данных';
 	private static $user='имя_пользователя';
@@ -15,10 +16,13 @@ class StBase {
 		if(is_object($r)){
 			$i = 0;
 			$arr = array();
-			while($r->data_seek($i)){$arr[$i] = $r->fetch_row();	$i++;}
+			while ($r->data_seek($i)) {
+				$arr[$i] = $r->fetch_row();
+				$i++;
+			}
 			mysqli_next_result(self::$msql);
 			return $arr;
-		} else{
+		} else {
 			return $r;	
 		}
 	}
@@ -28,46 +32,46 @@ class StBase {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
-		mysqli_multi_query(self::$msql, 'CALL '.$f.'('.$p.')');
+		mysqli_multi_query(self::$msql, "CALL $f($p)");
 		$result = mysqli_store_result(self::$msql);
 		$r = self::fetch_r($result);
 		return $r;			
 	}
 	
-	public static function sel($tb_name,$column,$wh) {
+	public static function sel($tb_name, $column, $wh) {
 		if(self::$msql == NULL) {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
-		$result = mysqli_query(self::$msql, 'SELECT '.$column.' FROM '.$tb_name.' '.$wh);
+		$result = mysqli_query(self::$msql, "SELECT $column FROM $tb_name $wh");
 		$r = self::fetch_r($result);
 		return $r;
 	}
 	
-	public static function ins($tb_name,$column,$values) {
+	public static function ins($tb_name, $column, $values) {
 		if(self::$msql == NULL) {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
-		mysqli_query(self::$msql, 'INSERT INTO '.$tb_name.' ('.$column.') VALUES ('.$values.')');
+		mysqli_query(self::$msql, "INSERT INTO $tb_name ($column) VALUES ($values)");
 		$result = mysqli_insert_id(self::$msql);
 		return $result;
 	}
 	
-	public static function upd($tb_name,$set,$wh) {
+	public static function upd($tb_name, $set, $wh) {
 		if(self::$msql == NULL) {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
-		mysqli_query(self::$msql, 'UPDATE '.$tb_name.' SET '.$set.' WHERE '.$wh);
+		mysqli_query(self::$msql, "UPDATE $tb_name SET $set WHERE $wh");
 	}
 	
-	public static function dlt($tb_name,$wh) {
-      if(self::$msql == NULL) {
+	public static function dlt($tb_name, $wh) {
+                if(self::$msql == NULL) {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
-      mysqli_query(self::$msql, 'DELETE FROM '.$tb_name.' WHERE '.$wh);
+                mysqli_query(self::$msql, "DELETE FROM $tb_name WHERE $wh");
 	}
         
 	public static function trtbl($tb_name){
@@ -75,7 +79,7 @@ class StBase {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
-		mysqli_query(self::$msql, 'TRUNCATE TABLE '.$tb_name);
+		mysqli_query(self::$msql, "TRUNCATE TABLE $tb_name");
 	}
 }
 
