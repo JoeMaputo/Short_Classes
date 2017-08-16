@@ -28,7 +28,7 @@ class StBase
 	}
 	
 	public static function fnc($f, $p) {
-		if(self::$msql == NULL) {
+		if(self::$msql === NULL) {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
@@ -39,7 +39,7 @@ class StBase
 	}
 	
 	public static function sel($tb_name, $column, $wh) {
-		if(self::$msql == NULL) {
+		if(self::$msql === NULL) {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
@@ -49,7 +49,7 @@ class StBase
 	}
 	
 	public static function ins($tb_name, $column, $values) {
-		if(self::$msql == NULL) {
+		if(self::$msql === NULL) {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
@@ -59,7 +59,7 @@ class StBase
 	}
 	
 	public static function upd($tb_name, $set, $wh) {
-		if(self::$msql == NULL) {
+		if(self::$msql === NULL) {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
@@ -67,7 +67,7 @@ class StBase
 	}
 	
 	public static function dlt($tb_name, $wh) {
-                if(self::$msql == NULL) {
+                if(self::$msql === NULL) {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
@@ -75,7 +75,7 @@ class StBase
 	}
         
 	public static function trtbl($tb_name){
-		if(self::$msql == NULL) {
+		if(self::$msql === NULL) {
 			self::$msql = mysqli_connect(self::$host, self::$user, self::$pass, self::$base);
 			mysqli_query(self::$msql, 'SET NAMES UTF8');
 		}
